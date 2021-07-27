@@ -9,8 +9,7 @@ tags: markdown
 
 **Markdown 是一种轻量级的「标记语言」**
 
-![markdown](https://www.mdeditor.com/images/logos/markdown.png "markdown")
-![本地图片](../../../../img/wxShare.png "分享配置前后对比")
+![markdown](https://www.mdeditor.com/images/logos/markdown.png 'markdown') ![本地图片](../img/wechat.png '分享配置前后对比')
 
 Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的 HTML 页面，Markdown 文件的后缀名便是“.md”
 
@@ -20,9 +19,9 @@ _MdEditor 扩展了 Markdown 的功能（如表格、脚注、内嵌 HTML 等等
 
 > Markdown 增强版中比较有名的有 Markdown Extra、MultiMarkdown、 Maruku 等。这些衍生版本要么基于工具，如~~Pandoc~~，Pandao；要么基于网站，如 GitHub 和 Wikipedia，在语法上基本兼容，但在一些语法和渲染效果上有改动。
 
-MdEditor 源于 Pandao 的 JavaScript 开源项目，开源地址[Editor.md](https://github.com/pandao/editor.md "Editor.md")，并在 MIT 开源协议的许可范围内进行了优化，以适应广大用户群体的需求。向优秀的 markdown 开源编辑器原作者 Pandao 致敬。
+MdEditor 源于 Pandao 的 JavaScript 开源项目，开源地址[Editor.md](https://github.com/pandao/editor.md 'Editor.md')，并在 MIT 开源协议的许可范围内进行了优化，以适应广大用户群体的需求。向优秀的 markdown 开源编辑器原作者 Pandao 致敬。
 
-![Pandao editor.md](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png "Pandao editor.md")
+![Pandao editor.md](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png 'Pandao editor.md')
 
 ## MdEditor 的功能列表演示
 
@@ -68,14 +67,7 @@ The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is mainta
 
 ### 锚点与链接 Links
 
-[普通链接](https://www.mdeditor.com/)
-[普通链接带标题](https://www.mdeditor.com/ "普通链接带标题")
-直接链接：<https://www.mdeditor.com>
-[锚点链接][anchor-id]
-[anchor-id]: https://www.mdeditor.com/
-[mailto:test.test@gmail.com](mailto:test.test@gmail.com)
-GFM a-tail link @pandao
-邮箱地址自动链接 test.test@gmail.com www@vip.qq.com
+[普通链接](https://www.mdeditor.com/) [普通链接带标题](https://www.mdeditor.com/ '普通链接带标题') 直接链接：<https://www.mdeditor.com> [锚点链接][anchor-id] [anchor-id]: https://www.mdeditor.com/ [mailto:test.test@gmail.com](mailto:test.test@gmail.com) GFM a-tail link @pandao 邮箱地址自动链接 test.test@gmail.com www@vip.qq.com
 
 > @pandao
 
@@ -104,7 +96,7 @@ GFM a-tail link @pandao
 
 ```javascript
 function test() {
-  console.log("Hello world!");
+  console.log('Hello world!');
 }
 ```
 
@@ -121,7 +113,7 @@ function test() {
       body {
         font-size: 14px;
         color: #444;
-        font-family: "Microsoft Yahei", Tahoma, "Hiragino Sans GB", Arial;
+        font-family: 'Microsoft Yahei', Tahoma, 'Hiragino Sans GB', Arial;
         background: #fff;
       }
       ul {
@@ -144,7 +136,7 @@ function test() {
 
 图片加链接 (Image + Link)：
 
-[![](https://www.mdeditor.com/images/logos/markdown.png)](https://www.mdeditor.com/images/logos/markdown.png "markdown")
+[![](https://www.mdeditor.com/images/logos/markdown.png)](https://www.mdeditor.com/images/logos/markdown.png 'markdown')
 
 > Follow your heart.
 
@@ -235,8 +227,7 @@ function test() {
 
 #### 特殊符号 HTML Entities Codes
 
-&copy; & &uml; &trade; &iexcl; &pound;
-&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot;
+&copy; & &uml; &trade; &iexcl; &pound; &amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot;
 
 X&sup2; Y&sup3; &frac34; &frac14; &times; &divide; &raquo;
 
