@@ -181,6 +181,58 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2020/12/15/js%E9%98%B2%E6%AD%A2%E6%8C%89%E9%92%AE%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/">js防止按钮重复点击</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/15/js%E9%98%B2%E6%AD%A2%E6%8C%89%E9%92%AE%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB/">
+          
+          
+            
+          
+          
+业务需求场景，项目中涉及到保存，修改数据的时候，多次点击按钮，因为数据处理需要时间，会造成重复操作的情况。
+
+解决方案一： 表单按钮修改 disabled 属性， 或者在 js 事件中设置标签判断。简单粗暴，不够优雅，每个事件里都要加重复的逻辑，没有分离开1this.disabled = true;
+方案二：使用函数防抖（自定义，或者直接使用 lodash 的 debounce 方法）12345
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-15 15:26" pubdate>
+              2020-12-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js%E4%BC%98%E5%8C%96/">js优化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/12/06/h5%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E9%85%8D%E7%BD%AE/">h5微信分享配置</a>
       </h1>
 
@@ -403,9 +455,9 @@ vs code 中安装 Auto.js-VSC
             
           
           欢迎使用 Markdown 在线编辑器 MdEditorMarkdown 是一种轻量级的「标记语言」
-
+ 
 Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的 HTML 页面，Markdown 文件的后缀名便是“.md”
-MdEditor 是一个在线编辑 Markdown
+MdEditor 是一个在线编辑 Markdow
         </a>
       </p>
 
@@ -657,62 +709,11 @@ margin 是我们在页面布局的时候经常使用的 css 属性
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2017/10/15/vim/">vim 常用操作</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2017/10/15/vim/">
-          
-          
-            
-          
-          
-总结使用 vim 编辑文件的常用操作，后面会持续更新
-
-创建编辑文件
-使用 vim （vi） + 文件名进入文件（如果文件名不存在则默认为新建）
-进入文件后，在英文状态下输入 i(insert)，进入编辑模式。
-需要保存退出的时候先点 esc(英文状态下)退出插入模式。再输入 shift+：进入命令模式。
-
-对于文件是否有改动分情况对应操作
-文件无改动输入 q 回车
-文件有改动 wq+回车，或者
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2017-10-16 00:00" pubdate>
-              2017-10-16
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vim/">vim</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
