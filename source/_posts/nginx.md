@@ -27,15 +27,15 @@ launchctl start ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 ```
 5. 设置nginx通用配置
 ```
-vim /usr/local/etc/nginx/servers/fe_91jkys_qa.conf
+vim /usr/local/etc/nginx/servers/fe_jiatt_qa.conf
 ```
 6. 粘贴如下配置
 ```
 server {
   listen 80;
-  server_name *.qa.91jkys.com;
+  server_name *.qa.jiatt.com;
 
-  if ($http_host ~* "^(.*?)\.qa\.91jkys\.com$") {
+  if ($http_host ~* "^(.*?)\.qa\.jiatt\.com$") {
     set $domain $1;
   }
 
@@ -63,11 +63,11 @@ sudo vim /etc/hosts
 
 # 添加三行
 
-127.0.0.1 3000.qa.91jkys.com
-127.0.0.1 3001.qa.91jkys.com
-127.0.0.1 3002.qa.91jkys.com
+127.0.0.1 3000.qa.jiatt.com
+127.0.0.1 3001.qa.jiatt.com
+127.0.0.1 3002.qa.jiatt.com
 ```
-9. 直接访问试试，后面有新端口直接配host就行，有任何问题可以联系：张文
+9. 直接访问试试，后面有新端口直接配host就行
 
 Centos7+/Ubuntu18+
 1. 安装nginx
@@ -82,7 +82,7 @@ systemctl enable nginx # 开机自启
 ```
 3. 剩余配置参考上方【Mac】5~9 配置部分，注意二则配置文件保存路径的区分，一般配置文件路径参考：
 ```
- vim /etc/nginx/conf.d/fe_91jkys_qa.conf
+ vim /etc/nginx/conf.d/fe_jiatt_qa.conf
 ```
 Windows（win10+）
 直接在Windows应用商店下载一个Ubuntu，作为win的子系统，参考上面方式即可。
