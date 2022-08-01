@@ -1,15 +1,18 @@
 ---
 title: Vue自定义指令
 categories: 前端开发
-tags: - js
-- vue.js
+tags:
+  - js
+  - vue.js
 date: 2021-12-09 15:41:02
 ---
 
-> vue.js中除了常用的v-model 和 v-if 这种常用的指令外，有一些需求还是需要自定义指令的，首先还是先放上官网[介绍](https://v3.cn.vuejs.org/api/application-api.html#directive)
+> vue.js 中除了常用的 v-model 和 v-if 这种常用的指令外，有一些需求还是需要自定义指令的，首先还是先放上官网[介绍](https://v3.cn.vuejs.org/api/application-api.html#directive)
 
 ## 权限控制的自定义指令
+
 自定义指令
+
 ```
   // 页面权限点
   permission: {
@@ -31,7 +34,9 @@ date: 2021-12-09 15:41:02
   },
 
 ```
+
 页面使用
+
 ```
 <el-button type='text' v-permission:edit >编辑</el-button>
 ```
