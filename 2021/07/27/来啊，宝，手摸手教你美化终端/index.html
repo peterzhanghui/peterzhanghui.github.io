@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      115 字
+      415 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      5
        分钟
     </span>
   
@@ -227,13 +227,33 @@
             <h1 style="display: none">来啊，宝，手摸手教你美化终端</h1>
             
             <div class="markdown-body">
-              <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>优化一下当前的终端界面，码代码的心情更好，而且结合 Oh My Zsh 安装相关插件可以提高效率，本文主要 iTerm2 + Oh My Zsh + Powerlevel10k ,xianshagn 先上一张效果图 <img src="../img/zsh_tips.png" srcset="/img/loading.gif" alt="效果图"></p>
+              <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>优化一下当前的终端界面，码代码的心情更好，而且结合 Oh My Zsh 安装相关插件可以提高效率，本文主要 iTerm2 + Oh My Zsh + Powerlevel10k ,xianshagn 先上一张效果图 <img src="/.com//img/zsh_tips.png" srcset="/img/loading.gif" alt="效果图"></p>
 <h2 id="安装-iTerm2"><a href="#安装-iTerm2" class="headerlink" title="安装 iTerm2"></a>安装 iTerm2</h2><p><a target="_blank" rel="noopener" href="https://iterm2.com/">安装</a></p>
 <h2 id="安装-Oh-My-Zsh"><a href="#安装-Oh-My-Zsh" class="headerlink" title="安装 Oh My Zsh"></a>安装 Oh My Zsh</h2><p>可以做很多定制化的处理，丰富的主题和插件</p>
-<p><a target="_blank" rel="noopener" href="https://ohmyz.sh/">安装</a></p>
+<p>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="安装报错处理"><a href="#安装报错处理" class="headerlink" title="安装报错处理"></a>安装报错处理</h3><p>可能会有443的报错<br> Failed to connect to raw.githubusercontent.com port 443 after 18 ms: Connection refused</p>
+<p>大概率是dns污染导致的，解决方案：添加host配置，建议使用SwitchHosts</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">199.232.68.133</span> raw.githubusercontent.com<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://ohmyz.sh/">参考官网</a></p>
 <h3 id="安装-Powerlevel10k"><a href="#安装-Powerlevel10k" class="headerlink" title="安装 Powerlevel10k"></a>安装 Powerlevel10k</h3><p>比较好用的主题</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k/">安装</a></p>
-<h3 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">plugins=(<br>  git<br>  github<br>  <span class="hljs-built_in">auto</span>jump<br>  zsh-syntax-highlighting<br>  zsh-<span class="hljs-built_in">auto</span>suggestions<br>)<br></code></pre></td></tr></table></figure>
+<h3 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h3><p>下面是我的插件配置，其中git,extract 为zsh自带插件，其他需要另外安装，安装方法见下文</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">plugins=(<br>  git<br>  extract<br>  <span class="hljs-built_in">auto</span>jump<br>  zsh-syntax-highlighting<br>  zsh-<span class="hljs-built_in">auto</span>suggestions<br>)<br></code></pre></td></tr></table></figure>
+<h4 id="autojump的安装及使用"><a href="#autojump的安装及使用" class="headerlink" title="autojump的安装及使用"></a>autojump的安装及使用</h4><p>安装</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>autojump<br></code></pre></td></tr></table></figure>
+<p>使用</p>
+<ol>
+<li>首先要用 cd 命令进入过对应文件夹一次，以让 autojump 记录,下次输入 j+ 空格 + tab 可以查看历史记录</li>
+<li>跳转到对应目录<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">j github</span><br></code></pre></td></tr></table></figure></li>
+<li>使用资源管理器打开对应路径的文件<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">jo github</span><br><br></code></pre></td></tr></table></figure>
+<h4 id="zsh-syntax-highlighting的安装及使用"><a href="#zsh-syntax-highlighting的安装及使用" class="headerlink" title="zsh-syntax-highlighting的安装及使用"></a>zsh-syntax-highlighting的安装及使用</h4>安装<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/zsh-users/</span>zsh-syntax-highlighting <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span><span class="hljs-regexp">/plugins/</span>zsh-syntax-highlighting<br></code></pre></td></tr></table></figure>
+使用<br>命令高亮插件，命令不再只是同一个颜色了</li>
+</ol>
+<h4 id="zsh-autosuggestions的安装及使用"><a href="#zsh-autosuggestions的安装及使用" class="headerlink" title="zsh-autosuggestions的安装及使用"></a>zsh-autosuggestions的安装及使用</h4><p>安装</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">git clone git:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/zsh-users/</span>zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span><span class="hljs-regexp">/plugins/</span>zsh-autosuggestions<br>git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/zsh-users/</span>zsh-autosuggestions <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span><span class="hljs-regexp">/plugins/</span>zsh-autosuggestions<br></code></pre></td></tr></table></figure>
+<p>使用<br>输入时按右方向键→自动补全命令</p>
+
             </div>
             <hr>
             <div>

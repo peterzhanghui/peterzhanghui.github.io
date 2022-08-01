@@ -181,6 +181,114 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/01/12/js%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2%E6%8E%A7%E5%88%B6%E6%89%93%E5%BC%80%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%E5%A4%84%E7%90%86/">js跳转页面控制打开新标签页的处理</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/12/js%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2%E6%8E%A7%E5%88%B6%E6%89%93%E5%BC%80%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%E5%A4%84%E7%90%86/">
+          
+          
+            
+          
+          
+项目中经常碰到列表跳详情的操作，需求想要新标签页不在当前页面，而是打开一个新的标签页
+
+这需求简单，直接 windows.open(url,’_blank’)搞定，测试发现
+问题一：如果在 ajax 异步请求数据的时候，会阻止弹框跳转。主要是浏览器会认为这个跳转不是用户自己操作的。解决方法如下：使用 a 标签模拟用户点击操作
+123456789101112131415/*** @method  
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-12 23:02" pubdate>
+              2021-01-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/07/js%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E5%9B%9B%E7%89%88/">js高级程序设计第四版</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/07/js%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E5%9B%9B%E7%89%88/">
+          
+          
+            
+          
+          第四章4.2.2 变量声明
+var 是函数作用域声明， let、const 是块级作用域声明
+let 同一作用域内不能声明两次，var 重复的会被忽略覆盖
+let 适合在循环中声明迭代变量，使用 var 声明的迭代变量会泄漏到循环外部
+const 被赋值为对象，应用值不能修改，但对象的键则不受限制，如果想整个对象都不能修改，可以使用 Object.freeze()
+
+4.3 垃圾回收
+js 最常用
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-07 23:03" pubdate>
+              2021-01-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/01/01/promise%E5%AE%9E%E7%8E%B0%E7%AE%80%E7%89%88%E7%BA%A2%E7%BB%BF%E7%81%AF/">async/await实现简版红绿灯</a>
       </h1>
 
@@ -585,118 +693,6 @@ MdEditor 是一个在线编辑 Markdow
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/markdown/">markdown</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/02/27/js%E9%9D%A2%E8%AF%95%E9%A2%98/">js面试题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/02/27/js%E9%9D%A2%E8%AF%95%E9%A2%98/">
-          
-          
-            
-          
-          堆栈堆：存储引用类型值的空间
-栈：存储基本类型值和指定代码的环境
-如何判断一个数据是 NaN
-NaN 非数字 但是用 typeof 检测是 number 类型 所以可以 （typeof XXX == number &amp;&amp; isNaN(XXX)）
-利用 NaN 是唯一一个不等于任何自身的特点 n !== n
-Object.is(value1, value2)方法（判断两个值是否相等）
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-02-27 14:09" pubdate>
-              2019-02-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/js/">js</a>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/02/26/css%E6%A0%B7%E5%BC%8F%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/">css样式相关面试题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/02/26/css%E6%A0%B7%E5%BC%8F%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98/">
-          
-          
-            
-          
-          
-总结梳理前端开发在面试中遇到的高频 css 面试题
-
-子 div 在父 div 中水平垂直居中的方式
-display: flex 弹性和布局，需要考虑 ie 兼容问题
-
-12345678910111213.outside&#123;    width: 400px;    height: 400px;    background: goldenrod;    display: flex;    
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-02-26 16:43" pubdate>
-              2019-02-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/css/">css</a>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
             
           </div>
         
