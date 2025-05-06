@@ -18,36 +18,28 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
-        registry-url: 'https://registry.npmjs.org/'  # 使用官方 npm 源
+        node-version: '16'  # 降级到更稳定的版本
+        registry-url: 'https://registry.npmjs.org/'
         
-    - name: Cache node modules
-      uses: actions/cache@v3
-      id: cache
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+    - name: Fix npm registry issues
+      run: |
+        # 彻底禁用淘宝镜像
+        npm config set registry https://registry.npmjs.org/ --location=global
+        npm config delete registry.taobao.org
+        npm config delete registry.npm.taobao.org
+        # 禁用 npm 的 https 严格模式，避免证书问题
+        npm config set strict-ssl false --location=global
+        # 显示当前配置
+        npm config list
     
     - name: Install Dependencies
       run: |
-        # 设置官方 npm 镜像源
-        npm config set registry https://registry.npmjs.org/
+        # 直接使用 npm ci 安装依赖
+        npm ci --no-fund --no-audit --no-progress --ignore-scripts
         
-        # 安装特定版本的 npm
-        npm install -g npm@10.2.4
-        
-        # 清理之前的 node_modules 和 npm 缓存
-        rm -rf node_modules
-        npm cache clean --force
-        
-        # 使用 npm install
-        npm install --no-fund --no-audit --no-progress
-        
-        # 安装 hexo-cli
-        npm install hexo-cli --no-save
-        npm install hexo-deployer-git --save
+        # 单独安装 hexo-cli
+        npm install hexo-cli@4.3.1 --no-save --ignore-scripts
+        npm install hexo-deployer-git@4.0.0 --save --ignore-scripts
         
     - name: Setup Git
       run: |
@@ -65,22 +57,23 @@ jobs:
         
     - name: Deploy
       run: |
-        # 显示 hexo 版本
-        npx hexo version
+        # 检查 hexo 是否正确安装
+        ./node_modules/.bin/hexo version
         
-        # 使用本地安装的 hexo-cli
-        npx hexo clean
-        npx hexo generate
+        # 使用本地路径执行 hexo 命令
+        ./node_modules/.bin/hexo clean
+        ./node_modules/.bin/hexo generate
         
-        # 检查生成的文件
-        ls -la public/
+        # 部署前检查 _config.yml 中的部署配置
+        cat _config.yml | grep -A 5 "deploy:"
         
         # 部署
-        npx hexo deploy
+        ./node_modules/.bin/hexo deploy
       env:
         NODE_OPTIONS: --max_old_space_size=4096
-        # 确保使用官方源
         npm_config_registry: https://registry.npmjs.org/
+        # 禁用 npm 的 SSL 严格检查
+        NODE_TLS_REJECT_UNAUTHORIZED: '0'
 
     - name: Cleanup
       if: always()
