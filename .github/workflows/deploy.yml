@@ -31,10 +31,17 @@ jobs:
     
     - name: Install Dependencies
       run: |
+        # 先清理可能有问题的依赖
+        rm -rf node_modules
+        # 安装项目依赖
         npm install
-        npm install hexo-cli -g
+        # 确保安装 hexo 和部署插件
+        npm install hexo-cli --save-dev
         npm install hexo --save
         npm install hexo-deployer-git --save
+        # 检查安装的包
+        npm list hexo
+        npm list hexo-cli
         
     - name: Setup Git
       run: |
@@ -52,9 +59,10 @@ jobs:
         
     - name: Deploy
       run: |
-        hexo clean
-        hexo generate
-        hexo deploy
+        # 使用 npx 确保使用本地安装的 hexo
+        npx hexo clean
+        npx hexo generate
+        npx hexo deploy
       env:
         NODE_OPTIONS: --max_old_space_size=4096
 
