@@ -13,9 +13,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        submodules: true # Checkout private submodules(themes or something else).
+        submodules: true
     
-    # 明确指定 Node.js 版本
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -32,22 +31,36 @@ jobs:
     
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        npm install -g hexo-cli
-        npm ci
+      run: npm ci
     
-    # Deploy hexo blog website.
+    # 替换原来的 hexo-action，使用自定义的部署步骤
+    - name: Install Hexo
+      run: |
+        npm install hexo-cli -g
+        
+    - name: Setup Git
+      run: |
+        git config --global user.name "peterzhanghui"
+        git config --global user.email "1226559563@qq.com"
+        
+    - name: Setup Deploy Key
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        
     - name: Deploy
-      id: deploy
-      uses: sma11black/hexo-action@v1.0.3
-      with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
-        user_name: peterzhanghui
-        user_email: 1226559563@qq.com
-        commit_msg: ${{ github.event.head_commit.message }}
+      run: |
+        hexo clean
+        hexo generate
+        hexo deploy
       env:
         NODE_OPTIONS: --max_old_space_size=4096
-    
-    - name: Get the output
+
+    - name: Cleanup
+      if: always()
       run: |
-        echo "${{ steps.deploy.outputs.notify }}"
+        rm -f ~/.ssh/id_rsa
