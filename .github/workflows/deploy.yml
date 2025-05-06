@@ -85,6 +85,6 @@ jobs:
               issue_number,
               owner,
               repo,
-              body: '🚀 部署${{ job.status == "success" && "成功" || "失败" }}!'
+              body: `🚀 部署${context.job.status === 'success' ? '成功' : '失败'}!`
             });
           }
