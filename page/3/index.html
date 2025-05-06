@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前端嘉嘉的博客，主要分享前端技术相关的文章，欢迎各位大佬不吝赐教">
+  <meta name="author" content="前端嘉嘉">
+  <meta name="keywords" content="前端开发，前端技术，前端博客，前端技术博客">
+  <title>前端嘉嘉的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":"UA-132328836-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>前端嘉嘉</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="会当临绝顶，一览众山小">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/21/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82js%E4%B8%ADfalsy%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83/">一文看懂js中falsy值的比较</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/21/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82js%E4%B8%ADfalsy%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83/">
+          
+          
+            
+          
+          
+面试中的笔试题经常有碰到 js 中假值的比较，其实主要考察的是 js 中在非全等情况下，比较的一个类型隐式转换问题
+
+示例代码js 中共有 8 个 falsy 值, 分别为 false, 0, 0n, -0, NaN, ‘’, null, undefined 还有 js 中易混的空数组和控对象。
+12345678910111213&lt;!-- 首先罗列所有易混的值 几个数字0 的转换表现一致所
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-21 14:49" pubdate>
+              2021-03-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/20/js%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BC%98%E7%BC%BA%E7%82%B9/">js实现继承的方式和优缺点</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/20/js%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BC%98%E7%BC%BA%E7%82%B9/">
+          
+          
+            
+          
+          原型继承实现的核心代码：
+123Child.prototype = new Parent();var child1 = new Child();
+缺点：
+
+引用类型的属性被所有实例共享
+创建实例时不能向 parent 传参
+
+构造函数继承在子类构造函数中调用父类的构造函数，相当于在新对象上，运行了父类的所有初始化代码
+12345678910function Parent () &#123;    
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-20 21:33" pubdate>
+              2021-03-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/12/%E5%87%BD%E6%95%B0%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8/">函数链式调用</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/12/%E5%87%BD%E6%95%B0%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8/">
+          
+          
+            
+          
+          
+编写代码，满足以下条件：（1）Hero(“37er”);执行结果为 Hi! This is 37er（2）Hero(“37er”).kill(1).recover(30);执行结果为 Hi! This is 37er Kill 1 bug Recover 30 bloods（3）Hero(“37er”).sleep(10).kill(2)执行结果为 Hi! This is 37er //等待 1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-12 14:09" pubdate>
+              2021-03-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/14/typeScript%E8%87%AA%E5%8A%A8%E7%BC%96%E8%AF%91/">typeScript文件保存时自动编译</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/14/typeScript%E8%87%AA%E5%8A%A8%E7%BC%96%E8%AF%91/">
+          
+          
+            
+          
+          
+typeScript 文件保存时自动编译，官网教程中的 提到的 vsCode 插件 atom-typescript，在 vsCode 中搜索没找到。
+
+1、全局安装 typeScript1npm install -g typescript
+2、手动编译创建完成 ts 文件后运行 tsc test.ts，会在当前目录下生成同名的 js 文件。
+1tsc test.ts
+3、自动编译a、生成配置 t
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-14 15:04" pubdate>
+              2021-02-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/typeScript/">typeScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/13/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">深浅拷贝</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/13/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+          
+          
+            
+          
+          
+项目中经常会遇到一些场景比如说从后端获取的数据，前端保存一份，用户需要修改编辑，如果页面需要同时展示两份数据的话，这时候前端就需要同时保留两份独立的数据，就需要用到拷贝，如果涉及到多层级的对象修改，就需要用到深拷贝。首先说一下几个易混的概念。
+
+赋值，浅拷贝，深拷贝
+ 值类型的数据 赋值是值赋值， 引用类型的数据（数组，对象） 赋值是地址赋 值，修改目标对象，来源对象也会更改
+ 浅拷贝 如果来源
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-13 19:13" pubdate>
+              2021-02-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/28/%E7%BB%9F%E8%AE%A1html%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E6%A0%87%E7%AD%BE/">统计html中出现最多的标签</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/28/%E7%BB%9F%E8%AE%A1html%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E6%A0%87%E7%AD%BE/">
+          
+          
+            
+          
+          查找当前页面中出现最多的 html 标签12345678910const maxBy = (list, keyBy) =&gt; list.reduce((x, y) =&gt; keyBy(x) &gt; keyBy(y) ? x : y)function getFrequentTag () &#123;  const tags = [...document.querySelectorAll(&
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-28 00:00" pubdate>
+              2021-01-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/25/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/25/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+          
+          
+            
+          
+          
+快速排序又叫快排，和冒泡排序类似，都是通过元素的比较和交换位置来排序，本文记录一下快排的实现方法，希望对大家有所帮助
+
+一、 基本思想快排采用分治的思想，每个循环将数列依据选定的基准，分成大小两份。主要实现思路 选择基准元素，还有元素的交换。这里有动画示例很好理解。
+二、 代码实现a、双边循环1234567891011121314151617181920212223242526272829303
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-25 19:38" pubdate>
+              2021-01-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/23/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E5%8F%8A%E4%BC%98%E5%8C%96/">冒泡排序及优化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/23/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E5%8F%8A%E4%BC%98%E5%8C%96/">
+          
+          
+            
+          
+          
+冒泡排序是我们会经常用到的排序方法，本文记录一下冒泡排序及优化的实现方法，希望对大家有所帮助
+
+一、 前情提要
+js 中可以使用数组的原生方法 sort 来进行排序。默认排序顺序是在将元素转换为字符串，然后比较它们的 UTF-16 代码单元值序列时构建的
+
+直接使用 sort，元素会按照转换为的字符串的诸个字符的 Unicode 位点进行排序
+123let arr = [4,2,8,10,1];
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-23 20:53" pubdate>
+              2021-01-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/23/js%E5%BE%AA%E7%8E%AF%E9%80%80%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95/">js循环退出的方法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/23/js%E5%BE%AA%E7%8E%AF%E9%80%80%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95/">
+          
+          
+            
+          
+          
+本文主要介绍 js 中 循环跳出/终止的方法，希望对你有所帮助
+
+常用的方法
+continue
+
+break
+
+return
+接下来，分别看看他们不同的使用场景
+
+
+一、for 循环中的使用continue 在 for 循环中是退出当前循环，接着执行下面的循环12345for(var i =0;i&lt;arr.length;i++)&#123;    if (arr[i] == 4) cont
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-23 14:57" pubdate>
+              2021-01-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/13/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%B0%8F%E5%8E%82%E5%81%9A%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/">在互联网小厂做面试官的一些感悟</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/13/%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%B0%8F%E5%8E%82%E5%81%9A%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/">
+          
+          
+            
+          
+          
+公司是一个初创公司，规模也不大，但是正常的人员流动，免不了需要筛选面试一些新的候选人，最近将近年底，涉及到年终奖的问题所以招聘很难，加上公司位置确实有点偏，不太有优势，所以造成了 boss 上很多已读未回的情况，一度怀疑招不到人，但是又总感觉下一个聊的人可能会成为未来的同事。整个过程还是有不少感触的，所以记录一下
+
+招聘需求的理解
+毕竟合适的才是最好的，理清楚自己的需求也很重要，这样选择才可以更
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-13 00:00" pubdate>
+              2021-01-13
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+              <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/">生活感悟</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <p>前端嘉嘉 <i class="iconfont icon-love"></i> 前端开发技术分享</P>  
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-132328836-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

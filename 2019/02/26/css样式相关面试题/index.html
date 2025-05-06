@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前端嘉嘉的博客，主要分享前端技术相关的文章，欢迎各位大佬不吝赐教">
+  <meta name="author" content="前端嘉嘉">
+  <meta name="keywords" content="前端开发，前端技术，前端博客，前端技术博客">
+  <title>css样式相关面试题 - 前端嘉嘉的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":"UA-132328836-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>前端嘉嘉</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="css样式相关面试题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-02-26 16:43" pubdate>
+        2019年2月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">css样式相关面试题</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>总结梳理前端开发在面试中遇到的高频 css 面试题</p>
+</blockquote>
+<h2 id="子-div-在父-div-中水平垂直居中的方式"><a href="#子-div-在父-div-中水平垂直居中的方式" class="headerlink" title="子 div 在父 div 中水平垂直居中的方式"></a>子 div 在父 div 中水平垂直居中的方式</h2><ol>
+<li>display: flex 弹性和布局，需要考虑 ie 兼容问题</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.outside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>    <span class="hljs-attribute">background</span>: goldenrod;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>    <span class="hljs-attribute">align-items</span>: center;<br>&#125;<br><span class="hljs-selector-class">.inside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">background</span>: forestgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>宽高和背景色属性下面实现中省略</p>
+<ol start="2">
+<li>position 定位 + maring(子元素高度确定) / transform（子元素高度不确定）</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.outside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span>;<br>    <span class="hljs-attribute">background</span>: goldenrod;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-class">.inside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">margin</span>: -<span class="hljs-number">50px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> -<span class="hljs-number">50px</span>;<br>    <span class="hljs-comment">/* transform:translate(-50%,-50%); */</span><br>    <span class="hljs-attribute">background</span>: forestgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>display：table-cell，vertical-align：middle;</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.outside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">30px</span>;<br>    <span class="hljs-attribute">background</span>: goldenrod;<br>    <span class="hljs-attribute">display</span>:table-cell;<br>    <span class="hljs-attribute">vertical-align</span>:middle;<br>&#125;<br><span class="hljs-selector-class">.inside</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;<br>    <span class="hljs-attribute">background</span>: forestgreen;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="用纯-CSS-创建一个三角形？"><a href="#用纯-CSS-创建一个三角形？" class="headerlink" title="用纯 CSS 创建一个三角形？"></a>用纯 CSS 创建一个三角形？</h2><h3 id="带有背景色的"><a href="#带有背景色的" class="headerlink" title="带有背景色的"></a>带有背景色的</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*</span><br><span class="hljs-comment">  采用的是相邻边框链接处的均分原理</span><br><span class="hljs-comment">  将元素的宽高设为0，只设置 border ,</span><br><span class="hljs-comment">  将任意三条边隐藏掉（颜色设为 transparent ）,剩下的就是一个三角形</span><br><span class="hljs-comment"> */</span><br><span class="hljs-selector-id">#demo</span>&#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">border-width</span>: <span class="hljs-number">20px</span>;<br>  <span class="hljs-attribute">border-style</span>: solid;<br>  <span class="hljs-attribute">border-color</span>: transparent transparent red transparent;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="画一个只有边框的三角形"><a href="#画一个只有边框的三角形" class="headerlink" title="画一个只有边框的三角形"></a>画一个只有边框的三角形</h3><p>实现方式就是在上面的基础上再加一个小一号的三角形块通过定位，遮罩住部分，最终显示为有边框的三角形</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span> &#123;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">30%</span>;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-style</span>: solid;<br>    <span class="hljs-attribute">border-width</span>: <span class="hljs-number">0</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">border-color</span>: transparent transparent <span class="hljs-number">#362a98</span> transparent;<br>&#125;<br><span class="hljs-selector-tag">span</span> <span class="hljs-selector-tag">i</span> &#123;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">left</span>: -<span class="hljs-number">96px</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">2px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-style</span>: solid;<br>    <span class="hljs-attribute">border-width</span>: <span class="hljs-number">0</span> <span class="hljs-number">96px</span> <span class="hljs-number">96px</span> <span class="hljs-number">96px</span>;<br>    <span class="hljs-attribute">border-color</span>: transparent transparent <span class="hljs-number">#eee</span> transparent;<br>    <span class="hljs-attribute">-webkit-transition</span>: all <span class="hljs-number">0.3s</span> ease-in-out;<br>    <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.3s</span> ease-in-out;<br>&#125;<br><span class="hljs-selector-tag">span</span> <span class="hljs-selector-tag">i</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>    <span class="hljs-attribute">border-color</span>: transparent transparent <span class="hljs-number">#362a98</span> transparent;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><blockquote>
+<p>当不给父元素设置宽高时，父元素的宽高会被子元素的内容撑开。但当子元素设置浮动属性（float） 后，子元素会溢出到父元素外，父元素的宽高也不会被撑开，这称之为“高度塌陷”。可以理解为使用浮动后的副作用，解决方法大体有以下两种</p>
+</blockquote>
+<ol>
+<li> 子元素添加 clear 属性</li>
+</ol>
+<p>实现的思路就是给对应的 css 选择器添加伪类，既要把伪元素变成块元素，又不能让他展示出来影响页面布局</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.clearfix</span> &#123;<br>  *zoom: <span class="hljs-number">1</span>;<span class="hljs-comment">/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/</span><br>&#125;<br><br><span class="hljs-selector-class">.clearfix</span><span class="hljs-selector-pseudo">:after</span> &#123;<br>  <span class="hljs-attribute">display</span>: block;       <span class="hljs-comment">// 转化为块布局也可以设置为table，设置为行内块元素</span><br>  <span class="hljs-attribute">clear</span>: both;          <span class="hljs-comment">// 使用clear 清除浮动对元素的影响</span><br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot; &quot;</span>;         <span class="hljs-comment">// 添加一个内容</span><br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;            <span class="hljs-comment">// 把内容在页面隐藏</span><br>  <span class="hljs-attribute">visibility</span>: hidden;   <span class="hljs-comment">// 把内容在页面隐藏</span><br>  <span class="hljs-attribute">overflow</span>: hidden;     <span class="hljs-comment">// 把内容在页面隐藏</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>父元素添加 overflow: hiden;触发浮动元素父元素的 BFC (Block Formatting Contexts, 块级格式化上下文)，使到该父元素可以包含浮动元素</li>
+</ol>
+<p>第二种虽然代码量小，但是超出尺寸的内容会被隐藏（不推荐）目前主流的做法是使用第一种</p>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><ul>
+<li><p>标准盒模型 (box-sizing: content-box;) 宽高大小不包含 padding,border</p>
+</li>
+<li><p>IE 盒模型 （box-sizing: border-box;）宽高大小包含 padding,border<br>目前采用最多的是 ie 盒模型，设置宽高包含这个元素尺寸，不需要在计算</p>
+</li>
+<li><p>flex 布局</p>
+</li>
+<li><p>多列布局 (column-count: 3;容器分三列布局，一般用于 平板电脑等 宽屏上的文章布局)</p>
+</li>
+<li><p>网格布局 （grid）</p>
+</li>
+</ul>
+<h2 id="介绍下-BFC-及其应用"><a href="#介绍下-BFC-及其应用" class="headerlink" title="介绍下 BFC 及其应用"></a>介绍下 BFC 及其应用</h2><p>BFC 就是块级格式上下文，是页面盒模型布局中的一种 CSS 渲染模式，相当于 一个独立的容器，里面的元素和外部的元素相互不影响(即不会造成 margin 重叠)</p>
+<h3 id="创建-BFC-的方式有"><a href="#创建-BFC-的方式有" class="headerlink" title="创建 BFC 的方式有"></a>创建 BFC 的方式有</h3><ul>
+<li>html 根元素</li>
+<li>float 浮动</li>
+<li>绝对定位</li>
+<li>overflow 不为 visiable</li>
+<li>display 为表格布局或者弹性布局</li>
+</ul>
+<h3 id="BFC-主要的作用是"><a href="#BFC-主要的作用是" class="headerlink" title="BFC 主要的作用是"></a>BFC 主要的作用是</h3><ul>
+<li>清除浮动</li>
+<li>防止同一 BFC 容器中的相邻元素间的外边距重叠问题</li>
+</ul>
+<h2 id="经典布局方案"><a href="#经典布局方案" class="headerlink" title="经典布局方案"></a>经典布局方案</h2><p>左右固定，中间自适应</p>
+<ul>
+<li>圣杯布局</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs dts">.clearfix&#123;<br><span class="hljs-symbol">        zoom:</span> <span class="hljs-number">1</span>;<br>    &#125;<br>    .clearfix::after&#123;<br><span class="hljs-symbol">        clear:</span> both;<br><span class="hljs-symbol">        content:</span> <span class="hljs-string">&#x27;.&#x27;</span>;<br><span class="hljs-symbol">        visibility:</span> hidden;<br><span class="hljs-symbol">        display:</span> block;<br><span class="hljs-symbol">        overflow:</span> hidden;<br><span class="hljs-symbol">        height:</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    .content&#123;<br><span class="hljs-symbol">        overflow:</span> hidden;<br><span class="hljs-symbol">        height:</span> <span class="hljs-number">100</span>%;<br><span class="hljs-symbol">        padding:</span> <span class="hljs-number">0</span> <span class="hljs-number">100</span>px;<br>    &#125;<br>    .center,.left, .right&#123;<br><span class="hljs-symbol">        float:</span> left;<br>    &#125;<br>    .center&#123;<br><span class="hljs-symbol">        width:</span> <span class="hljs-number">100</span>%;<br>        min-height: <span class="hljs-number">400</span>px;<br><span class="hljs-symbol">        background:</span> goldenrod;<br>    &#125;<br>    .left, .right&#123;<br><span class="hljs-symbol">        width:</span> <span class="hljs-number">100</span>px;<br><span class="hljs-symbol">        height:</span> <span class="hljs-number">100</span>px;<br><span class="hljs-symbol">        background:</span> forestgreen;<br>    &#125;<br>    .left&#123;<br>        margin-left: <span class="hljs-number">-100</span>%;<br><span class="hljs-symbol">        position:</span> relative;<br><span class="hljs-symbol">        left:</span> <span class="hljs-number">-100</span>px;<br>    &#125;<br>    .right&#123;<br>        margin-right: <span class="hljs-number">-100</span>px;<br>    &#125;<br>        <span class="hljs-params">&lt;div class=&quot;content &quot;&gt;</span><br>       <span class="hljs-params">&lt;div class=&quot;center&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>       <span class="hljs-params">&lt;div class=&quot;left&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>       <span class="hljs-params">&lt;div class=&quot;right&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>   <span class="hljs-params">&lt;/div&gt;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>双飞翼布局<br>和圣杯布局不同的就是 left，right 和 center 不在同一个父级元素下</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-params">&lt;div class=&quot;clearfix&quot;&gt;</span><br>      <span class="hljs-params">&lt;div class=&quot;content &quot;&gt;</span><br>          <span class="hljs-params">&lt;div class=&quot;center&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>      <span class="hljs-params">&lt;/div&gt;</span><br>      <span class="hljs-params">&lt;div class=&quot;left&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>      <span class="hljs-params">&lt;div class=&quot;right&quot;&gt;</span><span class="hljs-params">&lt;/div&gt;</span><br>  <span class="hljs-params">&lt;/div&gt;</span><br>   .clearfix&#123;<br><span class="hljs-symbol">          zoom:</span> <span class="hljs-number">1</span>;<br>      &#125;<br>      .clearfix::after&#123;<br><span class="hljs-symbol">          clear:</span> both;<br><span class="hljs-symbol">          content:</span> <span class="hljs-string">&#x27;.&#x27;</span>;<br><span class="hljs-symbol">          visibility:</span> hidden;<br><span class="hljs-symbol">          display:</span> block;<br><span class="hljs-symbol">          overflow:</span> hidden;<br><span class="hljs-symbol">          height:</span> <span class="hljs-number">0</span>;<br>      &#125;<br>      .content&#123;<br><span class="hljs-symbol">          width:</span> <span class="hljs-number">100</span>%;<br><span class="hljs-symbol">          height:</span> <span class="hljs-number">100</span>%;<br>      &#125;<br>      .content,.left, .right&#123;<br><span class="hljs-symbol">          float:</span> left;<br>      &#125;<br>      .center&#123;<br><span class="hljs-symbol">          margin:</span> <span class="hljs-number">0</span> <span class="hljs-number">100</span>px <span class="hljs-number">0</span> <span class="hljs-number">100</span>px;<br>          min-height: <span class="hljs-number">400</span>px;<br><span class="hljs-symbol">          background:</span> goldenrod;<br>      &#125;<br>      .left, .right&#123;<br><span class="hljs-symbol">          width:</span> <span class="hljs-number">100</span>px;<br><span class="hljs-symbol">          height:</span> <span class="hljs-number">100</span>px;<br><span class="hljs-symbol">          background:</span> forestgreen;<br>      &#125;<br>      .left&#123;<br>          margin-left: <span class="hljs-number">-100</span>%;<br>      &#125;<br>      .right&#123;<br>          margin-left: <span class="hljs-number">-100</span>px;<br>      &#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>使用 flex 布局</li>
+</ul>
+</li>
+</ul>
+<h2 id="flex-弹性布局"><a href="#flex-弹性布局" class="headerlink" title="flex 弹性布局"></a>flex 弹性布局</h2><ol>
+<li>设置盒子的 display 属性为 flex，或者 line-flex，其对应还有六个 css 属性，分别为：</li>
+</ol>
+<p>1）flex-direction：设置子元素的排列方式（row，column，row-reverse，column-reverse）</p>
+<p>2）flex-warp：设置子元素的是否换行（nowarp，warp，warp-reverse）</p>
+<p>3）flex-flow：flex-direction 和 flex-warp 的缩写，默认为 row nowarp</p>
+<p>4）justify-content：设置子元素的水平排列方式（flex-start，flex-end，center，span-around，span-between）</p>
+<p>5）align-items：设置子元素的垂直方式（flex-start，flex-end，center，stretch，baseline）</p>
+<p>6）align-content：设置多个轴线的排列方式（flex-start，flex-end，center，spand-around，spand-between，stretch）</p>
+<ol start="2">
+<li>对应的子元素项目也拥有自身的六个 css 属性，分别为：</li>
+</ol>
+<p>1）order：设置元素的排列权重 值越大越在后</p>
+<p>2）flex-grow：设置元素的放大比例</p>
+<p>3）flex-shrink：设置元素的缩小比例</p>
+<p>4）flex-basis：设置多余空间项目主轴所占比例空间</p>
+<p>5）<strong>flex：flex-grow 和 flex-shrink 和 flex-basis 的缩写方式 默认为 0 1 auto</strong></p>
+<p>6）align-self：设置子元素自己的垂直排列方式，默认为盒子的 align-items 的值</p>
+<p>:warning:：设置 flex 布局后，子元素的 float，clear，vertical-align 都无效</p>
+<h2 id="CSS3-新增属性用法的整理："><a href="#CSS3-新增属性用法的整理：" class="headerlink" title="CSS3 新增属性用法的整理："></a>CSS3 新增属性用法的整理：</h2><p>1、box-shadow（阴影效果）</p>
+<p>2、border-color（为边框设置多种颜色）</p>
+<p>3、border-image（图片边框）</p>
+<p>4、text-shadow（文本阴影）</p>
+<p>5、text-overflow（文本截断）</p>
+<p>6、word-wrap（自动换行）</p>
+<p>7、border-radius（圆角边框）</p>
+<p>8、opacity（透明度）</p>
+<p>9、box-sizing（控制盒模型的组成模式）</p>
+<p>10、resize（元素缩放）</p>
+<p>11、outline（外边框）</p>
+<p>12、background-size（指定背景图片尺寸）</p>
+<p>13、background-origin（指定背景图片从哪里开始显示）</p>
+<p>14、background-clip（指定背景图片从什么位置开始裁剪）</p>
+<p>15、background（为一个元素指定多个背景）</p>
+<p>16、hsl（通过色调、饱和度、亮度来指定颜色颜色值）</p>
+<p>17、hsla（在 hsl 的基础上增加透明度设置）</p>
+<p>18、rgba（基于 rgb 设置颜色，a 设置透明度）</p>
+<h2 id="移动端响应式布局开发的方案"><a href="#移动端响应式布局开发的方案" class="headerlink" title="移动端响应式布局开发的方案"></a>移动端响应式布局开发的方案</h2><ul>
+<li>media</li>
+<li>rem</li>
+<li>vh / vw 类似百分比布局</li>
+</ul>
+<h2 id="移动端适配-1px-的问题-（待做）"><a href="#移动端适配-1px-的问题-（待做）" class="headerlink" title="移动端适配 1px 的问题 （待做）"></a>移动端适配 1px 的问题 （待做）</h2><p>dpr = 物理像素 / css 像素 在 dpr = 2；<br>1px 的 css 像素在设备中是 2px 的物理像素，这会导致在设备上看上去 1px 的边框是 2px<br>解决方法： 用 transfrom： scale（）缩小 dpr 倍数 在 meta 标签中设定 scale 缩小两倍</p>
+<p>Retina 屏 1px 像素问题</p>
+<ol>
+<li>伪元素 + transform scaleY(.5)</li>
+<li>border-image</li>
+<li>box-shadow: 0 0 1px red;</li>
+</ol>
+<h2 id="content-visibility-auto"><a href="#content-visibility-auto" class="headerlink" title="content-visibility: auto"></a>content-visibility: auto</h2><p>使用 content-visibility 可以跳过渲染屏幕之外的内容</p>
+<h2 id="will-change"><a href="#will-change" class="headerlink" title="will-change"></a>will-change</h2><p>目前，主流浏览器一般根据 position、transform 等属性来决定合成策略，来“猜测”这些元素未来可能发生变化<br>使用 will-change，可以提示浏览器说明元素可能会有变化，这样浏览器就可以给他单独生成一个位图，可以提升合成策略的效果。<br>浏览器将为元素创建一个单独的层。之后，它将元素的渲染与其他优化一起委派给 GPU。随着 GPU 加速接管动画的渲染，这将使动画更加流畅。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">//在样式表中</span><br>.animating-element&#123;<br>  will-change：opacity;<br>&#125;<br><span class="hljs-comment">//在HTML中</span><br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span> =“ animating-elememt”&gt;<br>  动画子元素<br>&lt;/ <span class="hljs-keyword">div</span>&gt;<br><br></code></pre></td></tr></table></figure>
+<p>在浏览器中呈现以上代码段时，它将识别该 will-change 属性并优化将来与不透明度相关的更改。</p>
+<h3 id="什么时候不使用"><a href="#什么时候不使用" class="headerlink" title="什么时候不使用"></a>什么时候不使用</h3><p>虽然 will-change 是为了提高性能，它也可以，如果你滥用它降低了网络应用性能。<br>使用 will-change 表示该元素将来会更改。<br>因此，如果您尝试同时使用 will-change 动画和动画，那么它不会给您带来优化。因此，建议在父元素上使用 will-change，在子元素上使用动画。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">.my-<span class="hljs-class"><span class="hljs-keyword">class</span> </span>&#123;<br>  will-change：opacity;<br>&#125;<br>.child-<span class="hljs-class"><span class="hljs-keyword">class</span> </span>&#123;<br>  过渡：不透明度<span class="hljs-number">1</span>s缓入；<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>请勿使用在非动画元素。<br>在 will-change 元素上使用时，浏览器将尝试通过将元素移到新层并将转换移交给 GPU 来对其进行优化。如果您没有任何要转换的内容，则会导致资源浪费。</p>
+<h2 id="div-元素使用-display-inline-block-后元素中间还是有空格"><a href="#div-元素使用-display-inline-block-后元素中间还是有空格" class="headerlink" title="div 元素使用 display:inline-block 后元素中间还是有空格"></a>div 元素使用 display:inline-block 后元素中间还是有空格</h2><p>引发的原因就是 我们编辑 html 的时候代码会格式化换行，所以浏览器在解析的时候就会展示出来<br>解决方案：</p>
+<ul>
+<li>把换行和中间的空格都去掉（影响代码可读性）</li>
+<li>使用 float</li>
+<li>给外部的父元素添加 font-size： 0；</li>
+</ul>
+<h2 id="网站主题切换实现-灰色模式（悼念模式），日间模式，暗黑模式"><a href="#网站主题切换实现-灰色模式（悼念模式），日间模式，暗黑模式" class="headerlink" title="网站主题切换实现 灰色模式（悼念模式），日间模式，暗黑模式"></a>网站主题切换实现 灰色模式（悼念模式），日间模式，暗黑模式</h2><h3 id="最简单的做法就是给-html-直接设置滤镜效果-filter"><a href="#最简单的做法就是给-html-直接设置滤镜效果-filter" class="headerlink" title="最简单的做法就是给 html 直接设置滤镜效果 filter"></a>最简单的做法就是给 html 直接设置滤镜效果 filter</h3><p>日间模式就正常页面样式<br>灰色模式 ：（灰度 100%）<br>filter: grayscale(1);<br>暗黑模式：<br>filter: invert(1) hue-rotate(180deg);</p>
+<p>invert()：反相，反向输出图像着色（白变黑）</p>
+<h3 id="prefers-color-scheme"><a href="#prefers-color-scheme" class="headerlink" title="prefers-color-scheme"></a>prefers-color-scheme</h3><p>prefers-color-scheme CSS 媒体特性用于检测用户是否有将系统的主题色设置为亮色(light)或者暗色(dark)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme:</span> dark) &#123;<br>  <span class="hljs-selector-class">.day</span><span class="hljs-selector-class">.dark-scheme</span>   &#123; <span class="hljs-attribute">background</span>:  <span class="hljs-number">#333</span>; <span class="hljs-attribute">color</span>: white; &#125;<br>  <span class="hljs-selector-class">.night</span><span class="hljs-selector-class">.dark-scheme</span> &#123; <span class="hljs-attribute">background</span>: black; <span class="hljs-attribute">color</span>:  <span class="hljs-number">#ddd</span>; &#125;<br>&#125;<br><br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme:</span> light) &#123;<br>  <span class="hljs-selector-class">.day</span><span class="hljs-selector-class">.light-scheme</span>   &#123; <span class="hljs-attribute">background</span>: white; <span class="hljs-attribute">color</span>:  <span class="hljs-number">#555</span>; &#125;<br>  <span class="hljs-selector-class">.night</span><span class="hljs-selector-class">.light-scheme</span> &#123; <span class="hljs-attribute">background</span>:  <span class="hljs-number">#eee</span>; <span class="hljs-attribute">color</span>: black; &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="css-定义全局变量"><a href="#css-定义全局变量" class="headerlink" title="css 定义全局变量"></a>css 定义全局变量</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css">//定义<br><span class="hljs-selector-pseudo">:root</span>&#123;<br>   <span class="hljs-attribute">--theme-color</span>:red;<br>&#125;<br><br>//使用的时候<br><span class="hljs-selector-id">#app</span>&#123;<br>    <span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">var</span>(--theme-color);<br>&#125;<br><br>//假如我们没有指定<span class="hljs-selector-tag">--theme-color</span>这个属性，则可以在使用的时候加上替代值<br><span class="hljs-selector-id">#app</span>&#123;<br>    <span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">var</span>(--theme-color,black);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/css/">css</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/02/27/js%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">js面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/11/01/css%E4%B8%ADmargin%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">css中margin属性的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "E0gVm3prVuEvxUDjbzHCBU3x-gzGzoHsz",
+          app_key: "dpnJFBHwKJtjCet9mYmgA6UQ",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <p>前端嘉嘉 <i class="iconfont icon-love"></i> 前端开发技术分享</P>  
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-132328836-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

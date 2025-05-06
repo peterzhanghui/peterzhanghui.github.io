@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前端嘉嘉的博客，主要分享前端技术相关的文章，欢迎各位大佬不吝赐教">
+  <meta name="author" content="前端嘉嘉">
+  <meta name="keywords" content="前端开发，前端技术，前端博客，前端技术博客">
+  <title>面试题梳理 - 前端嘉嘉的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":"UA-132328836-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>前端嘉嘉</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="面试题梳理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-31 09:59" pubdate>
+        2021年3月31日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">面试题梳理</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>梳理一些有趣的面试题，查漏补缺</p>
+</blockquote>
+<h2 id="前端优化"><a href="#前端优化" class="headerlink" title="前端优化"></a>前端优化</h2><ul>
+<li>降低请求量：合并资源，减少 HTTP 请求数，minify / gzip 压缩，webP，lazyLoad。</li>
+<li>加快请求速度：预解析 DNS，减少域名数，并行加载，CDN 分发。</li>
+<li>缓存：HTTP 协议缓存请求，离线缓存 manifest，离线数据缓存 localStorage。</li>
+<li>渲染：JS/CSS 优化，加载顺序，服务端渲染，pipeline。</li>
+</ul>
+<h2 id="click-在-ios-上有-300ms-延迟，原因及如何解决？"><a href="#click-在-ios-上有-300ms-延迟，原因及如何解决？" class="headerlink" title="click 在 ios 上有 300ms 延迟，原因及如何解决？"></a>click 在 ios 上有 300ms 延迟，原因及如何解决？</h2><p>主要原因是 ios 有双击区域放大的功能，所以在第一次 click 后会监测 300ms 看会不会有第二次点击，但是对于只点击一次的操作会有慢了的错觉。</p>
+<ol>
+<li>粗暴型，禁用缩放 <meta name="viewport" content="width=device-width, user-scalable=no"></li>
+<li>利用 FastClick，其原理是： 检测到 touchend 事件后，立刻出发模拟 click 事件，并且把浏览器 300 毫秒之后真正触发的事件给阻断掉</li>
+</ol>
+<h2 id="cookie-和-session-的区别-localstorage-和-sessionstorage-的区别"><a href="#cookie-和-session-的区别-localstorage-和-sessionstorage-的区别" class="headerlink" title="cookie 和 session 的区别 localstorage 和 sessionstorage 的区别"></a>cookie 和 session 的区别 localstorage 和 sessionstorage 的区别</h2><p>Cookie 和 session 都可用来存储用户信息，cookie 存放于客户端，session 存放于服务器端， 因为 cookie 存放于客户端有可能被窃取，所以 cookie 一般用来存放不敏感的信息，比如 用户设置的网站主题(防止 xss 获取，可以设置 http-only 使用 https)，敏感的信息用 session 存储，比如用户的登陆信息，session 可以 存放于文件，数据库，内存中都可以，cookie 可以服务器端响应的时候设置，也可以客 户端通过 JS 设置<br>cookie 会在请求时在 http 首部发送给客户端，</p>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p>cookie 一般在客户端有 大小限制，一般为 4K，</p>
+<h3 id="cookie，localstorage，sessionstorage-的区别"><a href="#cookie，localstorage，sessionstorage-的区别" class="headerlink" title="cookie，localstorage，sessionstorage 的区别"></a>cookie，localstorage，sessionstorage 的区别</h3><ol>
+<li>生命周期： Cookie：可设置失效时间，否则默认为关闭浏览器后失效 Localstorage:除非被手动清除，否则永久保存 Sessionstorage：仅在当前网页会话下有效，关闭页面或浏览器后就会被清除</li>
+<li>存放数据： Cookie：4k 左右 Localstorage 和 sessionstorage：可以保存 5M 的信息</li>
+<li>http 请求： Cookie：每次都会携带在 http 头中，如果使用 cookie 保存过多数据会带来性能问题 其他两个：仅在客户端即浏览器中保存，不参与和服务器的通信</li>
+<li>易用性： Cookie：需要程序员自己封装，原生的 cookie 接口不友好 其他两个：即可采用原生接口，亦可再次封装</li>
+<li>应用场景： 从安全性来说，因为每次 http 请求都回携带 cookie 信息，这样子浪费了带宽，所以 cookie 应该尽可能的少用，此外 cookie 还需要指定作用域，不可以跨域调用，限制很多，但是 用户识别用户登陆来说，cookie 还是比 storage 好用，其他情况下可以用 storage，localstorage 可以用来在页面传递参数，sessionstorage 可以用来保存一些临时的数据，防止用户刷新 页面后丢失了一些参数。</li>
+</ol>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><h2 id="介绍下-webpack-热更新原理，是如何做到在不刷新-浏览器的前提下更新页面的"><a href="#介绍下-webpack-热更新原理，是如何做到在不刷新-浏览器的前提下更新页面的" class="headerlink" title="介绍下 webpack 热更新原理，是如何做到在不刷新 浏览器的前提下更新页面的"></a>介绍下 webpack 热更新原理，是如何做到在不刷新 浏览器的前提下更新页面的</h2><ol>
+<li>当修改了一个或多个文件；</li>
+<li>文件系统接收更改并通知 webpack；</li>
+<li>webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新；</li>
+<li>HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时 通过 HTTP 请求更新 jsonp；</li>
+<li>HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整 个页面刷新。</li>
+</ol>
+<h2 id="ajax-和-axios、fetch-的区别"><a href="#ajax-和-axios、fetch-的区别" class="headerlink" title="ajax 和 axios、fetch 的区别"></a>ajax 和 axios、fetch 的区别</h2><p>传统 Ajax ，核心使用 XMLHttpRequest 对象，多个请求之间如果有先后关系的话，就会出现回调地狱<br>axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生 XHR 的封装，只不过它是 Promise 的实现版本，符合最新的 ES 规范，它本身具有以下特征： 1.从浏览器中创建 XMLHttpRequest 2.支持 Promise API 3.客户端支持防止 CSRF 4.提供了一些并发请求的接口（重要，方便了很多的操作） 5.从 node.js 创建 http 请求 6.拦截请求和响应 7.转换请求和响应数据 8.取消请求 9.自动转换 JSON 数据</p>
+<p>fetch:优点</p>
+<ol>
+<li> 语法简洁，更加语义化</li>
+<li> 基于标准 Promise 实现，支持 async/await</li>
+<li> 同构方便，使用 <a target="_blank" rel="noopener" href="https://github.com/matthew-andrews/isomorphic-fetch">isomorphic-fetch</a></li>
+<li> 更加底层，提供的 API 丰富（request, response）</li>
+<li> 脱离了 XHR，是 ES 规范里新的实现方式</li>
+</ol>
+<p>缺点：<br>1）fetch 只对网络请求报错，对 400，500 都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。<br>2）fetch 默认不会带 cookie，需要添加配置项： fetch(url, {credentials: ‘include’})<br>3）fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费<br>4）fetch 没有办法原生监测请求的进度，而 XHR 可以</p>
+<h2 id="大文件上传显示进度条"><a href="#大文件上传显示进度条" class="headerlink" title="大文件上传显示进度条"></a>大文件上传显示进度条</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//原生获取上传进度的事件</span><br><br>onUploadProgress:<span class="hljs-function">(<span class="hljs-params">progressEvent</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> complete = (progressEvent.loaded / progressEvent.total * <span class="hljs-number">100</span> | <span class="hljs-number">0</span>) + <span class="hljs-string">&#x27;%&#x27;</span>;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;上传 &#x27;</span> + complete)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="CommonJS-和-Es-module"><a href="#CommonJS-和-Es-module" class="headerlink" title="CommonJS 和 Es module"></a>CommonJS 和 Es module</h2><p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/module-loader">Module 的加载实现</a></p>
+<p>CommonJS 的 require 语法是同步的，当我们使用 require 加载一个模块的时候，必须要等这个模块加载完后，才会执行后面的代码。 NodeJS 是服务端，使用 require 语法加载模块，一般是一个文件，只需要从本地硬盘中读取文件，它的速度是比较快的。但是在浏览器端就不一样了，文件一般存放在服务器或者 CDN 上，如果使用同步的方式加载一个模块还需要由网络来决定快慢，可能时间会很长，这样浏览器很容易进入“假死状态”。所以才有了后面的 AMD 和 CMD 模块化方案，它们都是异步加载的，比较适合在浏览器端使用</p>
+<p>差异：</p>
+<ul>
+<li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用；</li>
+<li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/01/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">异步任务执行顺序</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/31/http%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">http相关总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "E0gVm3prVuEvxUDjbzHCBU3x-gzGzoHsz",
+          app_key: "dpnJFBHwKJtjCet9mYmgA6UQ",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <p>前端嘉嘉 <i class="iconfont icon-love"></i> 前端开发技术分享</P>  
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-132328836-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
