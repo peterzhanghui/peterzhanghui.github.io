@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
+        registry-url: 'https://registry.npmjs.org/'  # 使用官方 npm 源
         
     - name: Cache node modules
       uses: actions/cache@v3
@@ -31,18 +32,22 @@ jobs:
     
     - name: Install Dependencies
       run: |
-        # 安装特定版本的 npm，避免兼容性问题
+        # 设置官方 npm 镜像源
+        npm config set registry https://registry.npmjs.org/
+        
+        # 安装特定版本的 npm
         npm install -g npm@10.2.4
         
         # 清理之前的 node_modules 和 npm 缓存
         rm -rf node_modules
         npm cache clean --force
         
-        # 使用 npm install 而不是 npm ci
-        npm install --no-fund --no-audit --prefer-offline --no-progress
+        # 使用 npm install
+        npm install --no-fund --no-audit --no-progress
         
         # 安装 hexo-cli
         npm install hexo-cli --no-save
+        npm install hexo-deployer-git --save
         
     - name: Setup Git
       run: |
@@ -60,12 +65,22 @@ jobs:
         
     - name: Deploy
       run: |
+        # 显示 hexo 版本
+        npx hexo version
+        
         # 使用本地安装的 hexo-cli
         npx hexo clean
         npx hexo generate
+        
+        # 检查生成的文件
+        ls -la public/
+        
+        # 部署
         npx hexo deploy
       env:
         NODE_OPTIONS: --max_old_space_size=4096
+        # 确保使用官方源
+        npm_config_registry: https://registry.npmjs.org/
 
     - name: Cleanup
       if: always()
