@@ -18,7 +18,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         
     - name: Cache node modules
       uses: actions/cache@v3
@@ -31,17 +31,17 @@ jobs:
     
     - name: Install Dependencies
       run: |
-        # 更新 npm 到最新版本
-        npm install -g npm@latest
+        # 安装特定版本的 npm，避免兼容性问题
+        npm install -g npm@10.2.4
         
         # 清理之前的 node_modules 和 npm 缓存
         rm -rf node_modules
         npm cache clean --force
         
-        # 使用 CI 模式安装依赖，禁用进度条，增加超时时间，忽略一些可选依赖
-        npm ci --no-fund --no-audit --prefer-offline --no-progress --network-timeout 300000
+        # 使用 npm install 而不是 npm ci
+        npm install --no-fund --no-audit --prefer-offline --no-progress
         
-        # 单独安装 hexo 相关依赖
+        # 安装 hexo-cli
         npm install hexo-cli --no-save
         
     - name: Setup Git
