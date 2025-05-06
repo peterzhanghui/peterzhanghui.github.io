@@ -31,17 +31,18 @@ jobs:
     
     - name: Install Dependencies
       run: |
-        # 先清理可能有问题的依赖
+        # 更新 npm 到最新版本
+        npm install -g npm@latest
+        
+        # 清理之前的 node_modules 和 npm 缓存
         rm -rf node_modules
-        # 安装项目依赖
-        npm install
-        # 确保安装 hexo 和部署插件
-        npm install hexo-cli --save-dev
-        npm install hexo --save
-        npm install hexo-deployer-git --save
-        # 检查安装的包
-        npm list hexo
-        npm list hexo-cli
+        npm cache clean --force
+        
+        # 使用 CI 模式安装依赖，禁用进度条，增加超时时间，忽略一些可选依赖
+        npm ci --no-fund --no-audit --prefer-offline --no-progress --network-timeout 300000
+        
+        # 单独安装 hexo 相关依赖
+        npm install hexo-cli --no-save
         
     - name: Setup Git
       run: |
@@ -59,7 +60,7 @@ jobs:
         
     - name: Deploy
       run: |
-        # 使用 npx 确保使用本地安装的 hexo
+        # 使用本地安装的 hexo-cli
         npx hexo clean
         npx hexo generate
         npx hexo deploy
@@ -70,3 +71,20 @@ jobs:
       if: always()
       run: |
         rm -f ~/.ssh/id_rsa
+
+    - name: Notify deployment result
+      if: always()
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          const { owner, repo } = context.repo;
+          const issue_number = context.issue?.number;
+          if (issue_number) {
+            github.rest.issues.createComment({
+              issue_number,
+              owner,
+              repo,
+              body: '🚀 部署${{ job.status == "success" && "成功" || "失败" }}!'
+            });
+          }
