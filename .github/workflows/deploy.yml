@@ -1,62 +1,50 @@
-name: Deploy
+name: Pages
 
 on:
   push:
     branches:
-      - master
+      - main # default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: A job to deploy blog.
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        submodules: true
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        
-    - name: Skip dependency installation and use GitHub Pages Action
-      run: |
-        # 显示当前工作目录内容
-        ls -la
-        
-        # 检查 package.json 和 _config.yml
-        cat package.json
-        echo "========================="
-        cat _config.yml | grep -A 5 "deploy:"
-        
-        # 创建简单的静态页面作为占位符
-        mkdir -p public
-        echo "<!DOCTYPE html><html><head><title>GitHub Actions - Redirecting</title><meta http-equiv=\"refresh\" content=\"0; url=https://github.com/peterzhanghui/peterzhanghui.github.io\"></head><body><p>Redirecting to repository...</p></body></html>" > public/index.html
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
-        publish_dir: ./public
-        publish_branch: gh-pages  # 或者你想要部署的分支
-        full_commit_message: ${{ github.event.head_commit.message }}
-        user_name: 'peterzhanghui'
-        user_email: '1226559563@qq.com'
-
-    - name: Notify deployment result
-      if: always()
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const { owner, repo } = context.repo;
-          const issue_number = context.issue?.number;
-          if (issue_number) {
-            github.rest.issues.createComment({
-              issue_number,
-              owner,
-              repo,
-              body: `🚀 部署${context.job.status === 'success' ? '成功' : '失败'}!`
-            });
-          }
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "16.20.2"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

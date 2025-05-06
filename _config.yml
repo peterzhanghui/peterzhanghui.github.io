@@ -103,4 +103,7 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ""
+  type: git
+  repo: git@github.com:peterzhanghui/peterzhanghui.github.io.git  # 使用SSH地址
+  branch: gh-pages  # 或者其他你想部署的分支
+  message: "站点更新: {{ now('YYYY-MM-DD HH:mm:ss') }}"

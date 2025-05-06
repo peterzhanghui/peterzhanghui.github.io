@@ -1,7 +1,7 @@
 ---
 title: Cursor入门与实践
 categories: 前端开发
-tags: Cursor
+tags: js
 date: 2025-04-25 13:42:07
 ---
 

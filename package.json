@@ -2,7 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://peterzhanghui.github.io/hexo-blog",
+  "homepage": "https://peterzhanghui.github.io",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
@@ -26,5 +26,8 @@
     "hexo-server": "^2.0.0",
     "hexo-theme-fluid": "^1.8.7",
     "hexo-theme-landscape": "^0.0.3"
+  },
+  "engines": {
+    "node": "16"
   }
 }
