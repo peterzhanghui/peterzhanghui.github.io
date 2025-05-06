@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前端嘉嘉的博客，主要分享前端技术相关的文章，欢迎各位大佬不吝赐教">
+  <meta name="author" content="前端嘉嘉">
+  <meta name="keywords" content="前端开发，前端技术，前端博客，前端技术博客">
+  <title>Cursor入门与实践 - 前端嘉嘉的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":"UA-132328836-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>前端嘉嘉</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Cursor入门与实践">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-04-25 13:42" pubdate>
+        2025年4月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      42
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Cursor入门与实践</h1>
+            
+            <div class="markdown-body">
+              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Cursor是一款基于VS Code的增强型代码编辑器，专为AI辅助编程而设计。它在保留VS Code熟悉的编辑体验基础上，深度集成了先进的AI功能，使开发人员能够更高效地编写和理解代码。</p>
+<p>文档中展示的截图和相关配置项都是以Cursor 官网目前最新版本（0.48.9）为准</p>
+<h2 id="1-基础配置-amp-迁移"><a href="#1-基础配置-amp-迁移" class="headerlink" title="1. 基础配置&amp;迁移"></a>1. 基础配置&amp;迁移</h2><h3 id="1-1-个性化设置"><a href="#1-1-个性化设置" class="headerlink" title="1.1 个性化设置"></a>1.1 个性化设置</h3><ul>
+<li><p>  <strong>界面汉化</strong>: 在 VS Code 扩展市场搜索 “Chinese (Simplified) Language Pack for Visual Studio Code” 并安装。</p>
+</li>
+<li><p>  <strong>活动栏垂直布局</strong>: 在设置 (Cmd/Ctrl + ,) 中搜索 <code>workbench.activityBar.orientation</code>，将其值修改为 <code>vertical</code>。</p>
+</li>
+</ul>
+<p>修改前：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/a039c68f-b2f0-4e50-b3bc-e00b5e84030f.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>修改后：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/5f4db06a-d525-4f89-909e-262aafb67e96.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="1-2-VSCode"><a href="#1-2-VSCode" class="headerlink" title="1.2 VSCode"></a>1.2 VSCode</h3><p>从VSCode迁移，相关配置</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/432e4a50-f891-4ef3-8d9d-d4d8128eb09a.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="1-3-WebStorm"><a href="#1-3-WebStorm" class="headerlink" title="1.3 WebStorm"></a>1.3 WebStorm</h3><p><a target="_blank" rel="noopener" href="https://pic-bed-1256249917.cos.ap-chengdu.myqcloud.com/uPic/image-20250401%E4%B8%8B%E5%8D%8843220485.png"><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/60576869-bd11-4ae7-b949-c47534e87b70.png" srcset="/img/loading.gif" alt="image"></a></p>
+<p>WebStorm 专注于前端开发，Cursor 通过以下扩展可提供类似功能：</p>
+<ul>
+<li><p>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next">JavaScript and TypeScript Nightly</a>：最新语言特性</p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets">ES7+ React/Redux Snippets</a>：React 开发代码片段</p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Vue.volar">Vue Language Features</a>：Vue.js 支持</p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template">Angular Language Service</a>：Angular 开发</p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> 和 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a>：代码检查和格式化</p>
+</li>
+</ul>
+<p>许多 WebStorm 功能已内置于 Cursor/VS Code，包括：</p>
+<ul>
+<li><p>  npm 脚本视图（在资源管理器中可见）</p>
+</li>
+<li><p>  调试 JavaScript/TypeScript</p>
+</li>
+<li><p>  Git 集成</p>
+</li>
+<li><p>  TypeScript 智能补全和类型检查</p>
+</li>
+</ul>
+<h2 id="2-主要功能介绍"><a href="#2-主要功能介绍" class="headerlink" title="2. 主要功能介绍"></a>2. 主要功能介绍</h2><h3 id="2-1-智能补全与编辑"><a href="#2-1-智能补全与编辑" class="headerlink" title="2.1 智能补全与编辑"></a>2.1 智能补全与编辑</h3><ul>
+<li><p><strong>Tab 补全</strong>: 智能预测并补全代码，支持多种语言和框架。</p>
+<ul>
+<li>  与 GitHub Copilot 对比：Cursor 提供更深度的项目上下文理解。</li>
+</ul>
+</li>
+<li><p><strong>内联编辑 (Cmd/Ctrl+K)</strong>: 选中代码后按 <code>Cmd/Ctrl+K</code> 快速唤起 AI 进行修改或生成，无需离开当前编辑位置。</p>
+<ul>
+<li><p>  <strong>代码场景</strong>: 快速修改、重构、解释选中代码。</p>
+</li>
+<li><p>  <strong>终端场景</strong>: 在终端中按 <code>Cmd/Ctrl+K</code>，可以用自然语言描述生成需要的命令行代码。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-AI-对话功能-Ask-amp-Agent"><a href="#2-2-AI-对话功能-Ask-amp-Agent" class="headerlink" title="2.2 AI 对话功能-Ask&amp;Agent"></a>2.2 AI 对话功能-Ask&amp;Agent</h3><ul>
+<li><p>  <strong>需求开发：</strong>通过自然语言与AI对话沟通，实现需求开发 </p>
+</li>
+<li><p>  <strong>代码库问答</strong>: 能够基于整个代码库回答问题，理解项目结构和依赖。</p>
+</li>
+</ul>
+<h2 id="3-收费与免费版本对比"><a href="#3-收费与免费版本对比" class="headerlink" title="3. 收费与免费版本对比"></a>3. 收费与免费版本对比</h2><p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/9def3acd-2d8e-41c0-baf5-6b74f224c09a.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="3-1-高级请求的次数"><a href="#3-1-高级请求的次数" class="headerlink" title="3.1 高级请求的次数"></a>3.1 高级请求的次数</h3><p><strong>更多高级模型调用次数</strong>: 免费版对 GPT-4o, Claude 3 等高级模型的调用次数有限制，付费版提供更多或无限制的调用。GPT-4o 和 Claude 3.5/3.7 Sonnet 都属于高级模型。每次使用 o1-mini 将消耗 1/3 次高级请求。</p>
+<h3 id="3-2-什么是快速请求和慢速请求？"><a href="#3-2-什么是快速请求和慢速请求？" class="headerlink" title="3.2 什么是快速请求和慢速请求？"></a>3.2 什么是快速请求和慢速请求？</h3><p>高级模型的快速请求会被后端优先处理。在 Pro 版中，达到快速请求上限后仍可使用高级模型，但在高负载时请求可能会排队。</p>
+<h2 id="4-AI-模型差异与选择建议"><a href="#4-AI-模型差异与选择建议" class="headerlink" title="4. AI 模型差异与选择建议"></a>4. AI 模型差异与选择建议</h2><h3 id="4-1-可用模型"><a href="#4-1-可用模型" class="headerlink" title="4.1 可用模型"></a>4.1 可用模型</h3><p>Cursor 支持多种 AI 模型，不同的模型在性能、成本和可用功能上有所差异。以下是部分可用模型及其信息的概述 (信息可能随时间变化，请以 Cursor 官方为准):</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>提供方</th>
+<th>Premium</th>
+<th>Agent</th>
+<th>Price⁶</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>claude-3.7-sonnet</code></td>
+<td>Anthropic</td>
+<td>✓</td>
+<td>✓</td>
+<td>$0.04</td>
+<td></td>
+</tr>
+<tr>
+<td><code>claude-3.7-sonnet (MAX)</code></td>
+<td>Anthropic</td>
+<td><strong>MAX</strong></td>
+<td>✓</td>
+<td>$0.05</td>
+<td>¹</td>
+</tr>
+<tr>
+<td><code>claude-3.5-haiku</code></td>
+<td>Anthropic</td>
+<td>✓</td>
+<td></td>
+<td>$0.01</td>
+<td>²</td>
+</tr>
+<tr>
+<td><code>claude-3-opus</code></td>
+<td>Anthropic</td>
+<td>✓</td>
+<td></td>
+<td>$0.10</td>
+<td>³</td>
+</tr>
+<tr>
+<td><code>deepseek-v3</code></td>
+<td>Fireworks</td>
+<td></td>
+<td></td>
+<td>免费</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gemini-2.5-pro-exp</code></td>
+<td>Google</td>
+<td>✓</td>
+<td>✓</td>
+<td>$0.04</td>
+<td></td>
+</tr>
+<tr>
+<td><code>gemini-2.5-pro-exp (MAX)</code></td>
+<td>Google</td>
+<td><strong>MAX</strong></td>
+<td>✓</td>
+<td>$0.05</td>
+<td>¹</td>
+</tr>
+<tr>
+<td><code>gpt-4o</code></td>
+<td>OpenAI</td>
+<td>✓</td>
+<td>✓</td>
+<td>$0.04</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>表格说明:</strong></p>
+<ul>
+<li><p>  <strong>Premium</strong>: 是否属于高级模型（通常需要付费计划或有使用限制）。<code>MAX</code> 可能表示需要最高级别的付费计划。</p>
+</li>
+<li><p>  <strong>Agent</strong>: 是否支持 Agent 模式（允许 AI 调用工具如文件系统、终端等）。</p>
+</li>
+<li><p>  <strong>Price⁶</strong>: 每次请求的参考价格（美元）。注意角标 <code>⁶</code> 的解释。</p>
+</li>
+<li><p><strong>Notes</strong>: 表格中数字角标的解释如下：（重点关注1、3、6）</p>
+<ul>
+<li><p>  <strong>¹ (Tool calls charged like requests)</strong>: 对于标记 <code>¹</code> 的模型, 在 Agent 模式下使用工具调用会像普通聊天请求一样消耗请求次数或计费。</p>
+</li>
+<li><p>  <strong>² (1/3 request)</strong>: 对于标记 <code>²</code> 的模型，每次调用仅消耗 1/3 次标准请求额度。</p>
+</li>
+<li><p>  <strong>³ (10 requests/day included with paid plan)</strong>: 对于标记 <code>³</code> 的模型，付费计划用户每天可免费调用这些特定模型 10 次。</p>
+</li>
+<li><p>  <strong>⁴ (500 requests/day with free plan)</strong>: 对于标记 <code>⁴</code> 的模型，免费计划用户每天可免费调用此模型 500 次。</p>
+</li>
+<li><p>  <strong>⁵ (High reasoning effort)</strong>: 标记 <code>⁵</code> 的模型需要较高的推理成本，可能响应较慢。</p>
+</li>
+<li><p>  <strong>⁶ (Prices are higher for long context window requests)</strong>: “Price”列显示的是基础价格。处理长上下文的请求，实际价格会更高。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-模型选择建议"><a href="#4-2-模型选择建议" class="headerlink" title="4.2 模型选择建议"></a>4.2 模型选择建议</h3><ul>
+<li><p>场景适用性分析</p>
+<ul>
+<li><p>  代码生成：GPT-4 和 Claude 表现最佳</p>
+</li>
+<li><p>  代码解释：Claude 更适合复杂逻辑分析</p>
+</li>
+<li><p>  文档生成：GPT-4 和 Claude 均可</p>
+</li>
+<li><p>  问题解答：Claude 更擅长</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-使用模式选择"><a href="#5-使用模式选择" class="headerlink" title="5. 使用模式选择"></a>5. 使用模式选择</h2><p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/4b79e06a-f422-4d46-becd-4f1aadd8d80f.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="5-1-Ask-模式"><a href="#5-1-Ask-模式" class="headerlink" title="5.1 Ask 模式"></a>5.1 Ask 模式</h3><p>之前版本的 Chat 模式。</p>
+<ul>
+<li><p><strong>适用场景</strong>:</p>
+<ul>
+<li><p>  <strong>需求沟通与确认</strong>: 在开始编码前，与 AI 沟通确认需求细节，确保理解一致。</p>
+</li>
+<li><p>  <strong>问题咨询</strong>: 询问技术问题、寻求解决方案、获取代码示例。</p>
+</li>
+<li><p>  <strong>文档生成</strong>: 快速生成函数注释、README 文档、API 文档等。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-Agent-模式"><a href="#5-2-Agent-模式" class="headerlink" title="5.2 Agent 模式"></a>5.2 Agent 模式</h3><p>默认模式，带来更强大和统一的 AI 体验，能够支持自动 web 联网操作。</p>
+<ul>
+<li><p><strong>适用场景</strong>:</p>
+<ul>
+<li><p>  <strong>智能代码生成与修改</strong>: 适合编写新功能、重构复杂逻辑，或需要 AI 跨多个文件进行修改的场景。</p>
+</li>
+<li><p>  <strong>处理复杂任务</strong>: AI 可以根据指令自动规划并执行一系列操作（如查找文件、编辑代码、运行命令）。</p>
+</li>
+</ul>
+</li>
+<li><p>  <strong>注意</strong>: Agent 模式下，AI 的每次回复可能包含多个工具调用（如读文件、写文件、搜索等）。每次请求最多包含 25 个工具调用，超出部分会作为新的请求计费。</p>
+</li>
+</ul>
+<h3 id="5-3-Manual-模式"><a href="#5-3-Manual-模式" class="headerlink" title="5.3 Manual 模式"></a>5.3 Manual 模式</h3><p>手动模式，适合需要精确控制代码修改，或 AI 自动修改不符合预期时进行手动调整。</p>
+<h2 id="6-对话上下文管理"><a href="#6-对话上下文管理" class="headerlink" title="6. 对话上下文管理"></a>6. 对话上下文管理</h2><ul>
+<li><p>  <strong>上下文窗口限制</strong>: 不同 AI 模型的上下文窗口大小不同，会影响 AI 能”记住”的对话历史长度。长对话可能导致早期信息丢失。</p>
+</li>
+<li><p>  <strong>上下文保留策略</strong>: AI 会尝试保留最重要的信息，但长对话或复杂任务下效果可能下降。</p>
+</li>
+</ul>
+<h3 id="6-1-当前限制"><a href="#6-1-当前限制" class="headerlink" title="6.1 当前限制"></a>6.1 当前限制</h3><p>目前不同模型的限制<img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/bdae5f48-575f-4bd2-8982-6d315be0e876.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="6-2-解决方案"><a href="#6-2-解决方案" class="headerlink" title="6.2 解决方案"></a>6.2 解决方案</h3><ul>
+<li><p>  <strong>提示用户</strong>: 当上下文过长时，Cursor 会提示用户可能需要开启新窗口或减少上下文范围。</p>
+</li>
+<li><p>  <strong>手动开启新窗口</strong>: 对于不同的独立任务，手动开启新的聊天窗口是保持上下文清洁的最佳实践。</p>
+</li>
+<li><p>  <strong>任务拆解</strong>: 将复杂的大任务拆解成更小的、可以分步处理的子任务，引导 AI 逐步完成。</p>
+</li>
+<li><p>  <strong>手动管理</strong>: 使用 <code>@</code> 精确引入需要的上下文，或在聊天中明确指示 AI “忽略之前的讨论，专注于当前问题”。</p>
+</li>
+</ul>
+<h2 id="7-rule-规则设置"><a href="#7-rule-规则设置" class="headerlink" title="7. rule 规则设置"></a>7. rule 规则设置</h2><p>在 0.45 版本之后，Cursor 有两种 Rules 的方式，一种是 Project Rules（官方推荐），一种是 User Rules。</p>
+<p>目前社区已经有很多成熟的 cursorrules 可供参考，可以先拷贝到项目中，再根据自己特定规范进行修改。</p>
+<ul>
+<li><p>  <a target="_blank" rel="noopener" href="https://github.com/PatrickJS/awesome-cursorrules">https://github.com/PatrickJS/awesome-cursorrules</a></p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://cursor.directory/">https://cursor.directory/</a></p>
+</li>
+<li><p>  <a target="_blank" rel="noopener" href="https://cursorlist.com/">https://cursorlist.com/</a></p>
+</li>
+</ul>
+<h3 id="7-1-个人规则配置-全局生效"><a href="#7-1-个人规则配置-全局生效" class="headerlink" title="7.1 个人规则配置 (全局生效)"></a>7.1 个人规则配置 (全局生效)</h3><p>配置应用于所有项目的个人编码偏好。可以配置以下规则：</p>
+<ul>
+<li><p>  代码风格</p>
+</li>
+<li><p>  命名规范</p>
+</li>
+<li><p>  文件组织</p>
+</li>
+</ul>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/4b941d29-0f2e-4ac4-a02b-556bf8fc0482.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="7-2-项目规则设置-当前项目生效"><a href="#7-2-项目规则设置-当前项目生效" class="headerlink" title="7.2 项目规则设置 (当前项目生效)"></a>7.2 项目规则设置 (当前项目生效)</h3><p>针对特定项目设置的规则，会覆盖个人规则 。可以配置以下规则：</p>
+<ul>
+<li><p>  代码行数限制（&gt;300行建议提取单独组件）</p>
+</li>
+<li><p>  环境文件管理（禁止覆盖.env）</p>
+</li>
+<li><p>  环境区分（dev/test/production）</p>
+</li>
+<li><p>生产环境规范（禁用mock）<br>  <img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/e644aea5-3f75-4c80-9227-8ba166fe9540.png" srcset="/img/loading.gif" alt="image.png"></p>
+</li>
+</ul>
+<h2 id="8-Notepad-功能详解"><a href="#8-Notepad-功能详解" class="headerlink" title="8. Notepad 功能详解"></a>8. Notepad 功能详解</h2><p><strong>项目文档集成</strong>:  Markdown 文件，用于记录项目特定的需求文档、接口文档、设计思路等</p>
+<p>Notepad 为实验功能，需要在设置中开启</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/2049c763-3591-4883-b78c-5bb264507f69.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>使用示例：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/20e69eb6-31d1-40e4-8b3a-aff0641adaf5.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="9-错误处理"><a href="#9-错误处理" class="headerlink" title="9. 错误处理"></a>9. 错误处理</h2><h3 id="9-1-项目运行报错"><a href="#9-1-项目运行报错" class="headerlink" title="9.1 项目运行报错"></a>9.1 项目运行报错</h3><ul>
+<li>  <strong>截图辅助诊断</strong>: 将运行报错的截图粘贴到聊天窗口，AI 可以识别错误信息并提供修复建议。</li>
+</ul>
+<h3 id="9-2-控制台报错处理"><a href="#9-2-控制台报错处理" class="headerlink" title="9.2 控制台报错处理"></a>9.2 控制台报错处理</h3><ul>
+<li><p>  <strong>AI 自动修复 (Lint Errors)</strong>: Cursor 可以自动识别并一键修复常见的 Linter 错误。</p>
+</li>
+<li><p>  <strong>自动获取错误信息</strong>: 当程序运行出错时，可以直接复制控制台的错误堆栈信息给 AI，让其分析原因。</p>
+</li>
+</ul>
+<h2 id="10-MCP-Machine-Control-Protocol"><a href="#10-MCP-Machine-Control-Protocol" class="headerlink" title="10. MCP (Machine Control Protocol)"></a>10. MCP (Machine Control Protocol)</h2><h3 id="10-1-概述"><a href="#10-1-概述" class="headerlink" title="10.1 概述"></a>10.1 概述</h3><p>MCP（<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=256500246&content_type=Article&match_order=1&q=Model+Context+Protocol&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDU0NjE2MjIsInEiOiJNb2RlbCBDb250ZXh0IFByb3RvY29sIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjU2NTAwMjQ2LCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.5dEyEZyelqPoc2YPlhSWbi-f70ZvwRaNw5HqjFO0s1o&zhida_source=entity">Model Context Protocol</a>）是一种开放协议，它标准化了应用程序如何向大语言模型（<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=256500246&content_type=Article&match_order=1&q=LLMs&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDU0NjE2MjIsInEiOiJMTE1zIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjU2NTAwMjQ2LCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.ruB41XzLMC-btn_XMzHpjEA7iXl5bOA1wCRm9FbNJsw&zhida_source=entity">LLMs</a>）提供上下文。你可以把它理解为 AI 应用的“USB-C 接口”，让 AI 模型能够安全、有效地和外部数据源、工具进行交互，以完成更复杂的任务。</p>
+<p>看一下官方的MCP架构图:</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/5178eadf-5484-4b1c-9e0f-756df2c05f8e.jpeg" srcset="/img/loading.gif" alt="34fbb14fc889d99deb0c921ee818877c.jpeg"></p>
+<p>MCP 的核心遵循客户端-服务器架构，其中主机应用程序可以连接到多个服务器：</p>
+<ul>
+<li><p>  <strong>本地数据源</strong>：MCP 服务器可以安全访问的您计算机上的文件、数据库和服务</p>
+</li>
+<li><p>  <strong>远程服务</strong>：MCP 服务器可以通过互联网（例如通过 API）连接到的外部系统</p>
+</li>
+</ul>
+<h3 id="10-2-推荐的-MCP-资源市场"><a href="#10-2-推荐的-MCP-资源市场" class="headerlink" title="10.2 推荐的 MCP 资源市场"></a>10.2 推荐的 MCP 资源市场</h3><h3 id="目前有多个优质的-MCP-资源市场，可以寻找并安装各种功能的-MCP-服务："><a href="#目前有多个优质的-MCP-资源市场，可以寻找并安装各种功能的-MCP-服务：" class="headerlink" title="目前有多个优质的 MCP 资源市场，可以寻找并安装各种功能的 MCP 服务："></a>目前有多个优质的 MCP 资源市场，可以寻找并安装各种功能的 MCP 服务：</h3><ul>
+<li><p>  Smithery：<a target="_blank" rel="noopener" href="https://smithery.ai/">https://smithery.ai/</a></p>
+</li>
+<li><p>  Mcp.so：<a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a></p>
+</li>
+<li><p>  PulseMCP：<a target="_blank" rel="noopener" href="https://www.pulsemcp.com/servers">https://www.pulsemcp.com/servers</a></p>
+</li>
+<li><p>  Glama：<a target="_blank" rel="noopener" href="https://glama.ai/mcp/servers">https://glama.ai/mcp/servers</a></p>
+</li>
+<li><p>  Cursor Directory：<a target="_blank" rel="noopener" href="https://cursor.directory/mcp">https://cursor.directory/mcp</a></p>
+</li>
+<li><p>  MCP 官方 Github：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></p>
+</li>
+</ul>
+<h3 id="10-3-mcp推荐"><a href="#10-3-mcp推荐" class="headerlink" title="10.3 mcp推荐"></a>10.3 mcp推荐</h3><p><strong>filesystem：</strong>可以对项目外的文件进行操作</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/53484ba1-df3c-48fd-a975-de479c08e1c0.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>sequentialthinking：</strong>支持复杂问题的分步拆解、动态调整、分支推演和多方协作</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/e0e48fe7-9517-4925-a973-db05e42a7561.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="11-实践提效小技巧"><a href="#11-实践提效小技巧" class="headerlink" title="11. 实践提效小技巧"></a>11. 实践提效小技巧</h2><h3 id="11-1-常见使用场景"><a href="#11-1-常见使用场景" class="headerlink" title="11.1 常见使用场景"></a>11.1 常见使用场景</h3><p><strong>图像生成代码</strong>: 在聊天窗口上传 UI 设计稿截图，让 AI 生成对应的 HTML/CSS 或组件代码。</p>
+<p><strong>基于 Git 修改生成测试用例</strong>: 使用 <code>@git</code> 引入最近的提交，让 AI 分析变更内容，生成测试用例清单用来自测。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/cb4a6596-96fe-4c82-985e-87935dd169e4.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>使用联网功能</strong>：使用<code>@web</code> ，快速获取最新的信息。</p>
+<p><strong>使用 checkpoint 一键回滚：</strong></p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/cc74fcd7-5710-4ab2-aa37-feaed604169e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>快捷键</strong>: 熟练使用 <code>Cmd/Ctrl+K</code> (内联编辑/终端生成), <code>Cmd/Ctrl+L</code> (聊天) 等核心快捷键。</p>
+<p>终端使用自然语言生成命令</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/eec16266-9858-402b-ac23-9efa35ad830b.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>代码中使用，针对选中代码快速提问</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/ea40f647-048a-4bfa-b16c-18dd451dc4b9.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>上下文管理快捷键</strong>: 在聊天输入框中：</p>
+<p><code>/</code>: 快速设置上下文选项。</p>
+<p><code>@</code>: 快速引入如文档 (<code>@doc</code>) 或已打开的文件等。</p>
+<p><code>#</code>: 快速搜索并引入项目中的文件 (<code>@file</code>)。</p>
+<p><code>@/</code>: 快速搜索并引入项目中的文件夹。</p>
+<p><strong>Tips: 上面的快捷键在空白聊天框可以直接使用，但是如果已经输入文案，需要前面加个空格，如果是复制粘贴过来的信息需要前后都有空格才可以</strong></p>
+<p><strong>拖拽式 添加上下文：</strong>在目录中直接拖拽目标文件，拖进对话框即可</p>
+<p><strong>预先沟通</strong>: 对于复杂任务，先让 AI 复述一遍你的需求，确认理解无误后再让它开始执行，避免方向错误。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/fc7416fa-3736-4ec4-9c39-8e4d959be738.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>关注边界</strong>: 在 AI 生成代码后，注意检查是否考虑了边界情况、错误处理以及对现有代码的影响范围。</p>
+<p>建议在Rules中添加全局规则</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/527c7880-cad6-4cda-b65f-2122537286e5.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>Git Commit Message</strong>: 让 AI 基于暂存区的代码变更自动生成规范的 Git Commit Message。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/ade08ffd-f4d4-433a-aa6f-9609c72cbee1.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>最好可以结合 Cursor Rules 一起使用：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/8a973aca-4132-48ef-9704-afd04505b6b8.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>自动化执行配置</strong></p>
+<p>启用自动运行模式，不需要每次调用再手动确认，比如需要执行命令或者MCP调用</p>
+<p>设置路径：Features &gt; Enable auto-run mode</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/aa89bcbb-bb1b-448b-ad9e-f1c21951528f.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>任务完成通知</strong>: 在设置中开启任务完成声音提示，方便异步等待 AI 处理结果。</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/af828da1-5e7d-44f0-bcb9-ba6d14b29198.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="11-2-提示词编写模版"><a href="#11-2-提示词编写模版" class="headerlink" title="11.2 提示词编写模版"></a>11.2 提示词编写模版</h3><p>模糊的提示词也是AI乱写的一大痛点之一，可以通过优化提示词尽量避免</p>
+<p>一个好的 Cursor 提示词通常包含三个部分：<code>目标说明</code> + <code>上下文信息</code> + <code>具体要求</code>。</p>
+<h4 id="11-2-1-代码生成模板"><a href="#11-2-1-代码生成模板" class="headerlink" title="11.2.1 代码生成模板"></a>11.2.1 代码生成模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">用[编程语言]创建[功能描述]，要求：<br>1. [功能要点1]<br>2. [功能要点2]<br>3. [功能要点3]<br>风格参考：[项目中已有的文件路径]<br></code></pre></td></tr></table></figure>
+<p> 开发立即注册页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">用Vue创建一个立即注册页面，要求：<br>1. 使用 Vue 语法<br>2. 在登录页面点击立即注册之后可以跳转到该页面<br>3. 页面 UI 风格和登录页面保持一致<br>4. 预留 API 调用逻辑，便于后续实现<br>风格参考：项目中已有的 components/login.vue<br></code></pre></td></tr></table></figure>
+<h4 id="11-2-2-功能扩展模板"><a href="#11-2-2-功能扩展模板" class="headerlink" title="11.2.2 功能扩展模板"></a>11.2.2 功能扩展模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">基于现有代码：<br>[粘贴现有代码]<br>添加[新功能描述]功能，需要与现有代码风格保持一致<br></code></pre></td></tr></table></figure>
+<p>在现有代码中添加功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">基于现有代码：<br>参考@引用的文件<br>添加如下功能：<br>1. 该页面当前只支持邮箱地址登录，加上手机号码登录<br>2. 两种登录方式，可以快速切换<br>3. 手机号登录不需要密码，通过获取验证码登录<br>4. 手机号码需要进行校验，暂时支持+86中国区，11 位数字<br>需要与现有代码风格保持一致<br></code></pre></td></tr></table></figure>
+<h4 id="11-2-3-代码重构模板"><a href="#11-2-3-代码重构模板" class="headerlink" title="11.2.3 代码重构模板"></a>11.2.3 代码重构模板</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">重构以下代码，提高其[性能/可读性/可维护性]：<br>[粘贴需要重构的代码]<br>重点改进：<br>1. [改进点1]<br>2. [改进点2]<br>但保持原有的功能不变<br></code></pre></td></tr></table></figure>
+<p>代码重构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">重构以下代码，提高页面的 UI 设计：<br>参考@引用的代码片段或者文件<br>重点改进：<br>1. 设计一个美观的背景图，采用渐变色<br>2. 登录界面加入一个平台名称，如：理财控台，同时在这个名称前面生成一个图标<br>但保持原有的功能不变<br></code></pre></td></tr></table></figure>
+<h3 id="常见错误与避免方法"><a href="#常见错误与避免方法" class="headerlink" title="常见错误与避免方法"></a>常见错误与避免方法</h3><table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>示例</th>
+<th>改进方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>过于宽泛</td>
+<td>写个好看的UI</td>
+<td>使用 Element UI创建数据表格，支持排序和分页</td>
+</tr>
+<tr>
+<td>隐含假设</td>
+<td>修复登录问题</td>
+<td>修复登录表单提交后出现的401错误，详细错误日志：…</td>
+</tr>
+<tr>
+<td>术语混淆</td>
+<td>做个响应式的程序</td>
+<td>创建在移动端和桌面端都能良好显示的 Vue 组件</td>
+</tr>
+</tbody></table>
+<h2 id="12-项目示例"><a href="#12-项目示例" class="headerlink" title="12. 项目示例"></a>12. 项目示例</h2><h3 id="控台需求"><a href="#控台需求" class="headerlink" title="控台需求"></a>控台需求</h3><p>背景：</p>
+<p>需要新增一个特殊理财产品管理页面</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/5dd22d70-77c7-4a52-9f52-000faa1b978b.png" srcset="/img/loading.gif" alt="原型图片.png"></p>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><p>提示词</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/c035e2d9-17c0-44ce-90bb-170af7723f68.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>结果页面</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/54Lq35A4MGRe2l7E/img/17409090-7109-4e42-8389-2b0d62b08e97.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="流程图优化"><a href="#流程图优化" class="headerlink" title="流程图优化"></a>流程图优化</h3><p>背景：理财商城跳转美市双录对接断点改造</p>
+<p>需要再原有的流程中增加修改节点信息</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/40e64444-f1c1-4bb3-afe9-34c8d7d2d186.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>提示词：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/J9LnW62vGWdW5lvD/img/98824bff-de2a-4083-a1d9-99795279c641.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>结果：</p>
+<p><img src="https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/mPdnpEk1oJQQGqw9/img/9403e0dc-d552-4f4b-bc70-c7108032eb61.png" srcset="/img/loading.gif" alt="双录优化流程图.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用下来，Cursor确实提效很多，但是同时也存在很多不足，还待完善。</p>
+<p>总之，在Cursor的加持下，提升开发体验的同时又能提升生产力，可以让大家有更充沛的精力聚焦在更有创造性的工作和个人成长上。</p>
+<p>最后也祝愿大家，可以享受AI编程的乐趣。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/02/keep-alive%E4%BF%9D%E6%8C%81%E9%A1%B5%E9%9D%A2%E4%BD%8D%E7%BD%AE/">
+                        <span class="hidden-mobile">keep-alive保持页面位置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "E0gVm3prVuEvxUDjbzHCBU3x-gzGzoHsz",
+          app_key: "dpnJFBHwKJtjCet9mYmgA6UQ",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <p>前端嘉嘉 <i class="iconfont icon-love"></i> 前端开发技术分享</P>  
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-132328836-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
