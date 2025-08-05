@@ -24,24 +24,26 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-v2-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-node-v2-
       - name: Install Dependencies
         run: |
-          echo "尝试使用官方 NPM 源..."
+          echo "配置 NPM 源..."
           npm config set registry https://registry.npmmirror.com
           npm config set fund false
           npm config set audit false
           
-          # 尝试安装依赖，如果失败则使用备用源
-          if ! npm install --prefer-offline --no-audit; then
-            echo "官方源失败，尝试使用中科大镜像源..."
-            npm config set registry https://mirrors.ustc.edu.cn/npm/
-            npm install --prefer-offline --no-audit
-          fi
+          # 清理可能的缓存问题
+          npm cache clean --force
+          
+          # 删除 node_modules 和 package-lock.json 确保干净安装
+          rm -rf node_modules package-lock.json
+          
+          echo "安装依赖..."
+          npm install --prefer-offline --no-audit --force
       - name: Build
-        run: npm run build
+        run: npm run ci-build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
