@@ -14,23 +14,32 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-      - name: Use Node.js 20
+      - name: Use Node.js 18
         uses: actions/setup-node@v4
         with:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: "16.20.2"
+          node-version: "18"
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
+            ${{ runner.os }}-node-
       - name: Install Dependencies
         run: |
-          npm config set registry https://registry.npmmirror.com
-          npm install
+          echo "尝试使用官方 NPM 源..."
+          npm config set registry https://registry.npmjs.org/
+          npm config set fund false
+          npm config set audit false
+          
+          # 尝试安装依赖，如果失败则使用备用源
+          if ! npm install --prefer-offline --no-audit; then
+            echo "官方源失败，尝试使用中科大镜像源..."
+            npm config set registry https://mirrors.ustc.edu.cn/npm/
+            npm install --prefer-offline --no-audit
+          fi
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
