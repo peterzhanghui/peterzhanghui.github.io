@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies
         run: |
           echo "尝试使用官方 NPM 源..."
-          npm config set registry https://registry.npmjs.org/
+          npm config set registry https://registry.npmmirror.com
           npm config set fund false
           npm config set audit false
           
